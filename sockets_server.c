@@ -36,6 +36,7 @@ int main(int argc, char *argv[])
         char buffer[1024];
         char *words = "Hello World!";
         struct sockaddr_in sockIn;
+		struct deck cardDeck;
         int serPort = atoi(argv[1]);
             //the user should input a server port as an argument
 
@@ -82,6 +83,8 @@ int main(int argc, char *argv[])
 			printf("Please input a valid key word\n");
 			//return to listening loop
 		}
+		
+		
 }
 
 //echo -n "deal" | nc 172.17.68.82 12121
