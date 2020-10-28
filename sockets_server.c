@@ -5,6 +5,30 @@
 #include <stdlib.h>
 #include <netinet/in.h>
 #include <string.h>
+#include "defs.h"
+
+extern int randperm(int *, int );
+int randomize(struct deck cardDeck)
+{
+	int i;
+	some_array = cardDeck.cards
+
+	for(i = 0; i < 52; i++)
+		some_array[i] = i;
+
+	printf("****************Before*****************\n");
+	for(i = 0; i < 52; i++)
+		printf("%d ", some_array[i]);
+
+	randperm(some_array, 52);
+
+	printf("\n****************After****************\n");
+	for(i = 0; i< 52; i++)
+		printf("%d ", some_array[i]);
+
+	printf("\n");
+	return(0);
+}
 
 int main(int argc, char *argv[])
 {
