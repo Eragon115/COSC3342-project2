@@ -83,7 +83,7 @@ int main(int argc, char *argv[])
 	}
 	printf("Accepted the connection!\n");
 
-	int reading = read(sfd, words, (size_t) sizeof(sockIn));
+	int reading = read(sfd, buffer, (size_t) sizeof(sockIn));
 	printf("Reading from client...\n");
 	if(reading < 0){
 		printf("Failed to read\n");
@@ -106,8 +106,6 @@ int main(int argc, char *argv[])
 	{
 		printf("Card %d: %d\n", (i + 1), 0);
 	}
-
-
 }
 
 //echo -n "deal" | nc 172.17.68.82 12121
