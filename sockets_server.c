@@ -50,12 +50,11 @@ struct card parse_card(int the_card)
 int main(int argc, char *argv[])
 {
 	int sfd, i;
-	char buffer[1024];
+	char buffer[1024] = {0};
 	char *words = "Hello World!";
 	struct sockaddr_in sockIn;
 	struct deck cardDeck;
-	int serPort = atoi(argv[1]);
-		//the user should input a server port as an argument
+	int serPort = atoi(argv[1]);				//the user should input a server port as an argument
 
 	sfd = socket(AF_INET, SOCK_STREAM, 0);
 	sockIn.sin_family = AF_INET;
@@ -68,7 +67,7 @@ int main(int argc, char *argv[])
 		exit(0);
 	}
 
-	int listening = listen(sfd, 1);
+	int listening = listen(sfd, 5);
 	printf("Listening for a message...\n");
 	if(listening < 0){
 		printf("Failed to listen\n");
@@ -76,7 +75,7 @@ int main(int argc, char *argv[])
 	}
 
 	int accepting = accept(sfd, (struct sockaddr *) &sockIn, (socklen_t *)sizeof(sockIn));
-			//blocking call
+												//blocking call
 	if(accepting < 0){
 		printf("Connection not accepted\n");
 		exit(0);
@@ -90,21 +89,27 @@ int main(int argc, char *argv[])
 		exit(0);
 	}
 	
-	printf("Received message: %s\n", words);
+	printf("Received message: %s\n", buffer);
 	char *searchingFor = "deal";
-	if(strcmp(words, searchingFor) == 0){
+	if(strcmp(buffer, searchingFor, 4) == 0){
 		printf("The deal has begun\n");
-		//send to deal function
 	}
 	else{
 		printf("Please input a valid key word\n");
-		//return to listening loop
+		exit(0);
 	}
 	
 	randomize(cardDeck);
 	for(i = 0; i < 52; i++)
 	{
 		printf("Card %d: %d\n", (i + 1), 0);
+	}
+	
+	int sending = write(sfd, cardDeck.cards, 208);
+	printf("Sending to client...\n");
+	if(sending < 0){
+		printf("Failed to send\n");
+		exit(0);
 	}
 }
 
