@@ -10,7 +10,7 @@ int randperm(int *, int );
 struct deck
 {
 	int cards[52];
-}
+};
 
 void randomize(struct deck cardDeck)
 {
