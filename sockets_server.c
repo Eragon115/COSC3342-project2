@@ -7,6 +7,11 @@
 #include <string.h>
 int randperm(int *, int );
 
+struct deck
+{
+	int cards[52];
+}
+
 void randomize(struct deck cardDeck)
 {
 	int i;
@@ -26,11 +31,6 @@ void randomize(struct deck cardDeck)
 		printf("%d ", cardDeck.cards[i]);
 
 	printf("\n");
-}
-
-struct deck
-{
-	int cards[52];
 }
 
 /*struct card
