@@ -8,7 +8,7 @@
 #include <arpa/inet.h>
 #include "defs.h"
 
-enum suit{spades,hearts,diamonds,clubs};
+;enum suit{spades,hearts,diamonds,clubs};
 enum value{ace,two,three,four,five,six,seven,eight,nine,ten,jack,queen,king};
 
 struct card
@@ -30,8 +30,8 @@ int main(int argc, char *argv[]){
 	int intArray[52]={0};
 	struct sockaddr_in sockIn;
 	struct deck cardDeck;
-	char *Address =argv[1];						//the user should input IP Address as the first argument
-	int Port = atoi(argv[2]);					//the user should input the port as the second argument
+	char *clientAddress = argv[1];					//the user should input IP Address as the first argument
+	int clientPort = atoi(argv[2]);					//the user should input the port as the second argument
 	
 	char *suitStrings[] = {"Spades", "Hearts","Diamonds", "Clubs"};
 	char *valueStrings[] = {"Ace","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Jack","Queen","King"};
@@ -41,13 +41,13 @@ int main(int argc, char *argv[]){
 	sockIn.sin_addr.s_addr = INADDR_ANY;
 	sockIn.sin_port = htons(clientPort);
 	
-	int INET_addr = inet_pton(AF_INET, Address, &sockIn.sin_addr);
-	if(INET_Addr<0){
+	int INET_addr = inet_pton(AF_INET, clientAddress, &sockIn.sin_addr);
+	if(INET_addr<0){
 		printf("Failed to convert string to usable IP\n");
         exit(0);
     }
 	
-	int connecting = connect(sfd, (const struct sockaddr *) &sockIn, (socklen_t *)sizeof(sockIn));
+	int connecting = connect(sfd, (struct sockaddr *) &sockIn, sizeof(sockIn));
 	if(connecting < 0){
 		printf("Failed to connect to the server.\n");
 		exit(0);

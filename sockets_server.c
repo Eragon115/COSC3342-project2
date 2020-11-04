@@ -5,12 +5,11 @@
 #include <stdlib.h>
 #include <netinet/in.h>
 #include <string.h>
-int randperm(int *, int );
+#include "randperm.c"
+#include "defs.h"
 
-struct deck
-{
-	int cards[52];
-};
+;int randperm(int *, int);
+struct deck;
 
 void randomize(struct deck cardDeck)
 {
