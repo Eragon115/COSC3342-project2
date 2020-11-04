@@ -6,46 +6,36 @@
 #include <netinet/in.h>
 #include <string.h>
 #include "defs.h"
+int randperm(int *, int );
 
-extern int randperm(int *, int );
-int randomize(struct deck cardDeck)
+void randomize(struct deck cardDeck)
 {
 	int i;
-	some_array = cardDeck.cards
 
 	for(i = 0; i < 52; i++)
-		some_array[i] = i;
+		cardDeck.cards[i] = i;
 
 	printf("****************Before*****************\n");
 	for(i = 0; i < 52; i++)
-		printf("%d ", some_array[i]);
+		printf("%d ", cardDeck.cards[i]);
 
 	printf("\n");
-	randperm(some_array, 52);
+	randperm(cardDeck.cards, 52);
 
 	printf("\n****************After****************\n");
 	for(i = 0; i< 52; i++)
-		printf("%d ", some_array[i]);
+		printf("%d ", cardDeck.cards[i]);
 
 	printf("\n");
-	return(0);
-}
-
-enum suits{spades,hearts,diamonds,clubs};
-enum cards{ace,two,three,four,five,six,seven,eight,nine,ten,jack,queen,king};
-struct card
-{
-    suit card_suit;
-    value card_value;
 }
 
 struct card parse_card(int the_card)
 {
     struct card temp_card;
-    temp_card.suit=the_card/13;
-    temp_card.value=the_card % 13;
+    temp_card.suit = the_card / 13;
+    temp_card.value = the_card % 13;
     return(temp_card);
-}
+};
 
 int main(int argc, char *argv[])
 {
