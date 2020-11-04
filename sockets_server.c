@@ -5,7 +5,6 @@
 #include <stdlib.h>
 #include <netinet/in.h>
 #include <string.h>
-#include "defs.h"
 int randperm(int *, int );
 
 void randomize(struct deck cardDeck)
@@ -29,13 +28,24 @@ void randomize(struct deck cardDeck)
 	printf("\n");
 }
 
+struct deck
+{
+	int cards[52];
+}
+
+/*struct card
+{
+    suit card_suit;
+    value card_value;
+};
+
 struct card parse_card(int the_card)
 {
     struct card temp_card;
     temp_card.suit = the_card / 13;
     temp_card.value = the_card % 13;
     return(temp_card);
-};
+};*/
 
 int main(int argc, char *argv[])
 {
@@ -81,7 +91,7 @@ int main(int argc, char *argv[])
 	
 	printf("Received message: %s\n", buffer);
 	char *searchingFor = "deal";
-	if(strcmp(buffer, searchingFor, 4) == 0){
+	if(strcmp(buffer, searchingFor) == 0){
 		printf("The deal has begun\n");
 	}
 	else{
