@@ -74,7 +74,7 @@ int main(int argc, char *argv[])
 	}
 
 	int accepting = accept(sfd, (struct sockaddr *) &sockIn, (socklen_t *)sizeof(sockIn));
-												//blocking call
+	//blocking call
 	if(accepting < 0){
 		printf("Connection not accepted\n");
 		exit(0);
@@ -99,10 +99,6 @@ int main(int argc, char *argv[])
 	}
 	
 	randomize(cardDeck);
-	for(i = 0; i < 52; i++)
-	{
-		printf("Card %d: %d\n", (i + 1), 0);
-	}
 	
 	int sending = write(sfd, cardDeck.cards, 208);
 	printf("Sending to client...\n");
