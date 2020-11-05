@@ -53,7 +53,7 @@ int main(int argc, char *argv[]){
 		exit(0);
 	}
 
-	sprintf(buffer, "deal");
+	sprintf(buffer, "deal\n");
 	ssize_t sending = send(sfd, buffer, strlen(buffer), 0);
 
     int reading = recv(sfd, intArray, 1024, 0);
